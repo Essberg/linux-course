@@ -161,7 +161,7 @@ Tämänkään avulla en päässyt serveriin käsiksi.
 
 ![image](https://github.com/user-attachments/assets/fca2e294-64f6-4480-abc6-62d474af6e21)
 
-16:15 Koska tietotekninen osaamiseni ei enää tässä vaiheessa riittänyt, ja liian itsevarmalla asenteella myöhäisessä vaiheessa aloitettu tehtävä alkoi tuntua mahdottomalta, päätin kirjoittaa tämän raportin loppuun, jotta kerkeän palauttamaan edes osan tehtävästä. Jatkan ratkaisun etsimistä, ja jos en muuta keksi, aion palata vanhaan virtuaalikoneen kuvakkeeseen ja tehdä serverin asetuksista lähtien kaiken uudestaan, jotta pääsen vihdoin luomaan tehtävässä pyydetyt sivut ja muut analysoinnit. Lisään puuttuvat kohdat tähän samaan raporttiin viikon aikana.
+16:15 Koska tietotekninen osaamiseni ei enää tässä vaiheessa riittänyt, ja liian itsevarmalla asenteella myöhäisessä vaiheessa aloitettu tehtävä alkoi tuntua mahdottomalta, päätin kirjoittaa tämän raportin loppuun, jotta kerkeän palauttamaan edes osan tehtävästä. Jatkan ratkaisun etsimistä. Lisään puuttuvat kohdat tähän samaan raporttiin viikon aikana.
 (Karvinen, UpCloud)
 
 ## Lähteet:
