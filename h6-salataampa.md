@@ -1,5 +1,21 @@
 # h6 Salataampa
 
+Käyttöympäristö:
+
+Acer Nitro V16.
+
+Käyttöjärjestelmä Windows 11 64-bit.
+
+Prosessori AMD Ryzen 7 8845HS
+
+Näytönohjain Radeon 780M Graphics 3.80 GHz.
+
+Asennettu RAM 16GB.
+
+Virtuaalikoneena Oracle VirtualBoxiin asennettu Debian.
+
+![416247776-3305b310-79a2-4570-827e-9cb746adb588](https://github.com/user-attachments/assets/9b08a07c-57a8-4cdb-8379-decbce15047e)
+
 Harjoituksessa on tarkoitus hankkia TLS-sertifikaatti Let’s Encryptiltä ja testata sen toimivuus. 
 
 Aloitetaan tiivistämällä aiheeseen liittyviä artikkeleita.
