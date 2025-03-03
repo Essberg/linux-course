@@ -132,20 +132,34 @@ Lopuksi kävin lokaalikoneella sekä puhelimella tarkastamassa, että sertifikaa
 (Karvinen)
 
 ## b)	A-rating
+
 21:35 Oman sivustonsa TLS:n voi testata laadunvarmistustyökalulla. Käytin itse SSLLabsin työkalua, jota Karvinen suositteli kurssimateriaaleissa. Työkalu löytyy osoitteesta  https://www.ssllabs.com/ssltest/. 
+
+![image](https://github.com/user-attachments/assets/9847b646-c6e7-46dc-96c1-b4b126944f68)
 
 Syötin oman sivuni osoitteen, ja painoin submit. Työkalu antoi sivulleni arvioksi A, eli parhaan tuloksen.
 
- 
+![image](https://github.com/user-attachments/assets/c1c744b0-75a5-4869-8657-c7f5883c56e0)
+
 Sivustoa alaspäin selatessa saa laajemman analyysin auki. Täältä näkee muun muassa sivun nimet ja aliakset, sertifikaatin voimassaoloajan ja myöntämisajankohdan sekä sen myöntäjän. Listauksen lopussa lukee myös sertifikaattiin luottavia tahoja, kuten Mozilla, Apple ja Android.
- 
+
+![image](https://github.com/user-attachments/assets/273407a1-1ddf-4972-8db3-07d1738e5bb5)
+
 Analyysistä löytyy myös mahdolliset lisäsertifikaatit, tässä tapauksessa Let’s Encryptin tarjoama Root X1.
+
+![image](https://github.com/user-attachments/assets/8304c9b9-1a1c-446d-97b8-0531ae503480)
  
 Työkalu löytää myös serverin TLS-protokollia, ja kertoo ovatko ne käytössä. Käytössä ovat vain uusimmat versiot protokollista – TLS 1.3 ja TLS 1.2.
- 
+
+![image](https://github.com/user-attachments/assets/01be2887-84bd-4641-8532-3df8963e16ca)
+
 Työkalu simuloi myös virtuaalisia kädenpuristuksia serverin ja clientin välillä. Huomion kiinnittää epäonnistunut yritys simuloitaessa Chrome 49 / XP SP3:lla tehtyä puristusta. Kävin etsimässä lisätietoa hakukoneesta, ja keskustelun perusteella vaikuttaisi siltä, että Let’s Encryptillä on ollut ongelmia jo pitkään käytettäessä Chromen versiota 49 Windows XP-käyttöjärjestelmällä. XP:llä on aiemmin ollut vaikeuksia tunnistaa käytetty Root X1-sertifikaatti.
+
+![image](https://github.com/user-attachments/assets/fd5b927c-4cf9-4830-b9f5-e4292c54c608)
  
 Analyysin loppuun oli vielä koottu yhteen testin suoritusajankohta sekä siihen käytetty aika, serverin käyttöjärjestelmä sekä sen hostname.
+
+![image](https://github.com/user-attachments/assets/c89dcc40-8466-4675-936d-38ece2f73a72)
  
 (Karvinen, SSLLabs, Booni3, Let’s Encrypt, von Pentz)
 
