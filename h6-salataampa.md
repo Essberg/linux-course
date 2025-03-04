@@ -114,8 +114,8 @@ ServerAlias www.essikarlberg.com
       SSLEngine on
       SSLCertificateFile "/home/essi/lego/certificates/essikarlberg.com.crt"
       SSLCertificateKeyFile "/home/essi/lego/certificates/essikarlberg.com.key"
-      DocumentRoot /home/tero/public_sites/tero.example.com/
-      <Directory /home/tero/public_sites/tero.example.com/>
+      DocumentRoot /home/essi/publicsites/essikarlberg.com/
+      <Directory /home/essi/publicsites/essikarlberg.com/>
               require all granted
       </Directory>
 </VirtualHost>
