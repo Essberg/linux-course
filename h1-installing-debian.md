@@ -10,6 +10,8 @@ Karvinen, T. (2024) ohjeistaa raportoimaan hyviä käytäntöjä noudattaen:
 -	Kuvaa tekemisesi tarkoin: mitä komentoa käytit, minkä virheviestin sait, millä todensit tehtävän epäonnistuneen, missä ohjelmassa virhe tapahtui.
 -	Käytä huolellista ja helppolukuista tekstiä.
 -	Muista viitata lähteisiin.
+
+(Karvinen)
   
 # FSF Free Software Definition
 
@@ -22,6 +24,8 @@ Free Software Foundation määrittelee vapaat ohjelmat seuraavien kriteerien muk
 - Vapaus tutkia ohjelmaa ja muuttaa sitä itselleen sopivaksi – lähdekoodi pitää olla saatavilla.
 - Vapaus jakaa ohjelmistoa eteenpäin auttaakseen muita.
 - Vapaus jakaa muokattua ohjelmaa ja lähdekoodia eteenpäin.
+
+(Free Software Foundation)
 
 # Virtuaalikoneen asennus
 -	Tein harjoituksen 19.1.2025 omalla Acer Nitro V16 -kannettavallani Windows-käyttöjärjestelmällä.
@@ -55,7 +59,7 @@ Free Software Foundation määrittelee vapaat ohjelmat seuraavien kriteerien muk
 
 ![image](https://github.com/user-attachments/assets/a4a673c5-2f61-48a4-8e35-5b500da2efec)
 
- 
+(Karvinen)
 
 ## Lähteet 
 Free Software Foundation, Inc. What is Free Software? https://www.gnu.org/philosophy/free-sw.html
