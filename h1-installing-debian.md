@@ -1,4 +1,18 @@
-# Raportin kirjoittaminen
+# h1 Installing Debian
+
+Harjoituksessa käytetty kone:
+
+Acer Nitro V16.
+
+Käyttöjärjestelmä Windows 11 64-bit.
+
+Prosessori AMD Ryzen 7 8845HS
+
+Näytönohjain Radeon 780M Graphics 3.80 GHz.
+
+Asennettu RAM 16GB.
+
+## Raportin kirjoittaminen
 
 Karvinen, T. (2024) ohjeistaa raportoimaan hyviä käytäntöjä noudattaen:
 
@@ -13,7 +27,7 @@ Karvinen, T. (2024) ohjeistaa raportoimaan hyviä käytäntöjä noudattaen:
 
 (Karvinen)
   
-# FSF Free Software Definition
+## FSF Free Software Definition
 
 Free Software Foundation määrittelee vapaat ohjelmat seuraavien kriteerien mukaan:
 
@@ -27,7 +41,7 @@ Free Software Foundation määrittelee vapaat ohjelmat seuraavien kriteerien muk
 
 (Free Software Foundation)
 
-# Virtuaalikoneen asennus
+## Virtuaalikoneen asennus
 -	Tein harjoituksen 19.1.2025 omalla Acer Nitro V16 -kannettavallani Windows-käyttöjärjestelmällä.
 -	20:00 latasin Debianin iso-imagen osoitteesta http://mirrors.dotsrc.org/debian-cd/12.9.0-live/amd64/iso-hybrid/debian-live-12.9.0-amd64-xfce.iso.
 -	20:05 latasin ja asensin VirtualBoxin osoitteesta https://www.virtualbox.org/wiki/Downloads.
