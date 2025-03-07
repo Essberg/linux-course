@@ -1,6 +1,22 @@
 # h2 Komentaja Pingviini
 
-Command Line Basics Revisited:
+Harjoituksessa käytetty kone:
+
+Acer Nitro V16.
+
+Käyttöjärjestelmä Windows 11 64-bit.
+
+Prosessori AMD Ryzen 7 8845HS
+
+Näytönohjain Radeon 780M Graphics 3.80 GHz.
+
+Asennettu RAM 16GB.
+
+Virtuaalikoneena Oracle VirtualBoxiin asennettu Debian.
+
+![image](https://github.com/user-attachments/assets/0392d1e6-da5e-4c0c-b198-5b9ffe2ec975)
+
+## Command Line Basics Revisited:
 -	Komentokehoitteet ovat olleet olemassa jo ennen Linuxia, Googlea tai Windowsia, ja ne ovat edelleen käytännöllisiä ja erittäin käytettyjä.
 -	Komentorivillä työskentelet aina jossakin hakemistossa, juurikansio on ”/”.
 -	Tabulaattorilla voit täydentää komentoja ja nopeuttaa työskentelyä ja nuolinäppäimillä saat kursoria liikuteltua.
@@ -9,7 +25,7 @@ Command Line Basics Revisited:
 
 (Karvinen)
 
-Harjoitus:
+## Harjoitus:
 
 a)	Käytin ohjeena Karvisen Linux-kurssin tehtävänantoa. Päivitin ensin kaikki paketit uusimpiin versioihin, jonka jälkeen asensin micron komennolla sudo apt install micro.
  
