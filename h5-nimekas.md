@@ -164,15 +164,222 @@ Tämänkään avulla en päässyt serveriin käsiksi.
 16:15 Koska tietotekninen osaamiseni ei enää tässä vaiheessa riittänyt, ja liian itsevarmalla asenteella myöhäisessä vaiheessa aloitettu tehtävä alkoi tuntua mahdottomalta, päätin kirjoittaa tämän raportin loppuun, jotta kerkeän palauttamaan edes osan tehtävästä. Jatkan ratkaisun etsimistä. Lisään puuttuvat kohdat tähän samaan raporttiin viikon aikana.
 (Karvinen, UpCloud)
 
+
+## Raportin loppuosa on tehty 1.-2.3.2025.
+
+1.3. 20:15. Viikon luennolla käytiin kotitehtävää läpi, ja sain sieltä paljon vinkkejä tähän tehtävään. Päätin ottaa kokonaan uuden serverin käyttöön, sillä pelkäsin tekemieni SSH-avainten muutoksien vaikeuttavan tehtäviä. Lisäksi ajattelin, ettei serverin vuokraamisen ja alkuasetuksien teon kertaus tekisi pahaa. Kävin siis vuokraamassa uuden serverin UpCloudilta ja valmistelin sen asetuksineen käyttöä varten. Seurasin tässä omaa edellistä raporttiani muistin virkistämiseksi.
+
+Serverin vuokrauksen jälkeen kävin vielä ohjaamassa vuokraamani nimen essikarlberg.com uuteen, juuri vuokratun palvelimen IP-osoitteeseen NameCheapin sivujen kautta. Tämä oli helppo tehdä korvaamalla aiemmin luodut A-recordit uudella IP-osoitteella.
+
+(Essberg, Karvinen)
+
+## b) Based
+
+Tässä vielä tiivistettynä toimet, jotka tehtävässä ennen ongelmien alkamista kerkesin tehdä:
+
+ -	Otetaan palvelimeen yhteys, päivitetään ohjelmat:
+  
+```
+$ssh essi@94.237.119.82
+$sudo apt-get update
+$sudo apt-get upgrade
+```
+
+ -	Ensin loin uuden Name Based Virtual Hostin essikarlberg.comille oikeilla tiedoilla:
+
+![image](https://github.com/user-attachments/assets/94b3b1f6-d092-4d6d-8daa-467aff8a2511)
+
+ -	Luodaan sivustolle kansio komennolla
+  
+```
+$ mkdir -p /home/essi/publicsites/essikarlberg.com/
+```
+
+ -	Loin uuden index.html-tiedoston peruskäyttäjänä:
+
+```
+$nano index.html
+```
+
+ -	Laitetaan sivusto päälle
+
+```
+$sudo a2ensite essikarlberg.com.conf
+```
+
+ -	Potkaistaan demonia
+
+```
+$sudo systemctl restart apache2
+```
+
+Tähän asti olin edellisellä kerralla päässyt, ja tälläkään kertaa ei etusivu näkynyt oikein. Tarkastelin syytä Apache2:n error-logeista komennolla
+
+```
+$sudo tail -f /var/log/apache2/error.log
+```
+
+![image](https://github.com/user-attachments/assets/71cf7b6d-3743-45e8-b122-304b2873eb50)
+ 
+2.3.2025 15:25. Karvinen kertoi kurssin luennolla, että käyttäjälle other pitää antaa suoritusoikeudet (x) kansioon, jossa sivusto sijaitsee sekä lukuoikeus (r) html-tiedostoon. Annetaan oikeudet komennoilla
+
+```
+$chmod o+x /home/essi/publicsites/
+$chmod o+x /home/essi/publicsites/essikarlberg.com
+$chmod o+r /home/essi/publicsites/essikarlberg.com/index.html
+```
+
+
+![image](https://github.com/user-attachments/assets/93cdc524-795a-4854-bee2-9fb2ad0da845)
+
+![image](https://github.com/user-attachments/assets/17260f09-7460-4ca5-b26c-f5759767ed59)
+
+![image](https://github.com/user-attachments/assets/4d34e5b2-a04d-4742-8a93-c8937ade23de)
+
+Testataan toimivuutta curlilla:
+
+```
+$curl 94.237.119.82
+```
+
+![image](https://github.com/user-attachments/assets/09c07f78-ae28-4b27-a649-16da2ebe9c2e)
+
+Sain vastaukseksi testisivun, eli jotain oli vielä pielessä. Katsotaan taas Apache2:n error-logia:
+
+![image](https://github.com/user-attachments/assets/80b6cd2f-3312-49d9-9d9e-713166dc9c34)
+
+![image](https://github.com/user-attachments/assets/e7b6ac88-0446-408c-ab07-b8f3e22089e3)
+
+Eli edelleen oli kyse oikeuksien puuttumisesta. Päätin googlettaa virheviestin, ja löysin Stackoverflowsta keskustelua ongelmastani. Ilmeisesti suoritusoikeudet pitää antaa myös home-kansiolle, jotta ohjelmalla on oikeus avata kohdekansio. Annetaan oikeudet:
+
+```
+$chmod o+x /home/essi/
+```
+
+Ja tarkastetaan vielä kansion käyttöoikeudet:
+
+```
+$ls -l
+```
+
+![image](https://github.com/user-attachments/assets/6d6e7045-c97c-469d-aa58-0a8ea3ff6668)
+
+Testataan aukeaako sivu oikein nyt:
+ 
+Ja sehän toimii!
+
+![image](https://github.com/user-attachments/assets/8bd95e66-c937-48e9-84c3-e11137e19279)
+
+(Karvinen, Stackoverflow)
+
+## c) Kotisivu
+
+Tehtävänä oli luoda lisää alasivuja peruskäyttäjänä, sekä linkittää ne toisiinsa.
+
+16:00. Aloitetaan luomalla uudet alasivut. Navikoidaan ensin sivuston kansioon:
+
+```
+$ cd /home/essi/publicsites/essikarlberg.com/
+```
+
+Luodaan kansioon uudet tiedostot blogi.html ja projektit.html.
+
+```
+$micro blogit.html
+$micro projektit.html
+```
+
+Lisätään tiedostoihin HTML-koodit, joissa eri alasivut linkitetään toisiinsa:
+
+![image](https://github.com/user-attachments/assets/de993959-1210-4723-b5e5-a5097662be43)
+
+![image](https://github.com/user-attachments/assets/aec12f94-2d5f-4c0e-ba69-1ab2d4c1a78a)
+ 
+Linkityksien teon kävin katsomassa GeeksforGeeksien dokumentaatiosta, ja muuten käytin jo aiemmin opittua hyväkseni koodin luonnissa.
+
+Lisäsin samat linkitykset myös index.html-tiedostoon, jotta sivut olisivat myös sitä kautta linkitettyinä toisiinsa.
+
+Seuraavaksi oli aika kokeilla linkkien toimivuutta ja menin selaimella osoitteeseen essikarlberg.com. Linkitykset näkyivät, ja myös ohjasivat oikeille alasivuille:
+
+![image](https://github.com/user-attachments/assets/4b6370f6-a721-4a21-bf51-1df6044e5442)
+
+![image](https://github.com/user-attachments/assets/a86d436e-43be-4a1e-ace3-8c361e001c6f)
+
+![image](https://github.com/user-attachments/assets/3d1231fe-0d4a-4069-993a-2a127adf1adc)
+
+(GeeksforGeeks)
+
+## d) Alidomain
+
+16:50. Tarkoituksena on hankkia kaksi alidoimainia, sekä ohjata ne osoittaamaan sivuston etusivulle. Katsoin tähän vinkkejä Apachen documentoinnista sekä NameCheapin ohjeista.
+
+Aloitetaan tekemällä NameCheapin domainasetuksien kautta kaksi uutta alidomainia esimerkki.essikarlberg.com sekä linuxkurssi.essikarlberg.com. Tein nämä lisäämällä sivustolle kaksi uutta A-recordia ja ohjasin ne palvelimen IP-osoitteeseen saadakseni sivun etusivun näkymään alidomaineja käytettäessä.
+
+![image](https://github.com/user-attachments/assets/393798a2-f38c-4473-8831-6c764adc0fec)
+
+Seuraavaksi kävin katsomassa, toimivatko sivut. Sain esiin vain testisivun molemmilla alidomainella, sillä en ollut vielä käynyt muokkaamassa sivun Name Based Virtual Host-tiedostoa.
+
+![image](https://github.com/user-attachments/assets/29ea3f8b-cd96-4ffb-9991-068fe9d66717)
+
+![image](https://github.com/user-attachments/assets/7ab77d18-8702-4896-8d06-24f9a89c3a24)
+
+Seuraavaksi siis muokataan essikarlberg.com.conf tiedostoa komennolla:
+
+```
+$sudoedit /etc/apache2/sites-available/essikarlberg.com.conf
+```
+
+Apachen oman ohjeistuksen mukaisesti lisäsin alidomainien tiedot ja ohjasin ne sivuston etusivulle. Alidomainit saa ohjattua nimeämällä ne ServerName-kohdassa, ja laittamalla DocumentRootiksi etusivun tiedostopolun:
+
+![image](https://github.com/user-attachments/assets/4c868287-97d0-486e-8696-c17247ef2162)
+
+Tiedoston tallentamisen jälkeen laitoin sivun päälle ja käynnistin Apachen uudelleen.
+
+```
+$sudo a2ensite essikarlberg.com.conf
+$sudo systemctl restart apache2
+```
+
+![image](https://github.com/user-attachments/assets/a804b4fd-b9b9-465f-a3f1-d9afc28716c4)
+
+![image](https://github.com/user-attachments/assets/87bbced9-058a-4d25-98e3-8307856fa90b)
+   
+17:30 Jäljellä oli vielä alidomainien testaus, eli kirjoitin selaimeen linuxkurssi.essikarlberg.com sekä esimerkki.essikarlberg.com.
+
+![image](https://github.com/user-attachments/assets/841b0c48-d6c4-4782-8aa1-f85d15b4c2c1)
+
+![image](https://github.com/user-attachments/assets/aaa978e0-4802-4067-9a93-db70b8211e4c)
+
+Molemmat alisivut ohjasivat oikein etusivulle!
+
+(Apache Software Foundation, NameCheap)
+
+## e) DNS-tietojen tutkiminen
+
+Tässä kohdassa on tarkoitus käyttää dig- ja host-komentoja DNS-tietojen vertailuun.
+
 ## Lähteet:
 
-Karvinen T., 2025. Linux-palvelimet, h4 Maailma kuulee. https://terokarvinen.com/linux-palvelimet/.
+Tehtävänanto: Karvinen T., 2025. Linux-palvelimet, h5 Nimekäs. Luettavissa: https://terokarvinen.com/linux-palvelimet/. Luettu: 24.2.2025.
 
-Karvinen T., 2017. First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS. https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/.
+Karvinen T., 2025. Linux-palvelimet, h4 Maailma kuulee. Luettavissa: https://terokarvinen.com/linux-palvelimet/. Luettu 24.2.2025.
 
-Karvinen, T., 2012. Short HTML5 page. https://terokarvinen.com/2012/short-html5-page/
+Karvinen T., 2017. First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS. Luettavissa: https://terokarvinen.com/2017/first-steps-on-a-new-virtual-private-server-an-example-on-digitalocean/. Luettu 24.2.2025.
 
-Lehto, S., 2022. Teoriasta käytäntöön pilvipalvelimen avulla (h4). https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/.
+Karvinen, T., 2012. Short HTML5 page. Luettavissa: https://terokarvinen.com/2012/short-html5-page/. Luettu 24.2.2025.
 
-UpCloud, 2024. Managing SSH-keys. https://upcloud.com/resources/tutorials/managing-ssh-keys.
+Lehto, S., 2022. Teoriasta käytäntöön pilvipalvelimen avulla (h4). Luettavissa: https://susannalehto.fi/2022/teoriasta-kaytantoon-pilvipalvelimen-avulla-h4/. Luettu 24.2.2025.
 
+UpCloud, 2024. Managing SSH-keys. Luettavissa: https://upcloud.com/resources/tutorials/managing-ssh-keys. Luettu 24.2.2025.
+
+Päivitetyn version lisälähteet:
+
+Apache Software Foundation, 2025. Name-based Virtual Host Support. Luettavissa: https://httpd.apache.org/docs/2.4/vhosts/name-based.html. Luettu 2.3.2025.
+
+Essberg, 2025. H5 Nimekäs. Luettavissa: https://github.com/Essberg/linux-course/blob/main/h5-nimekas.md. Luettu 1.3.2025.
+
+GeeksforGeeks, 2024. HTML <a> href Attribute. Luettavissa: https://www.geeksforgeeks.org/html-a-href-attribute/. Luettu: 2.3.2025.
+
+GiorgosK, 2018. Apache - Permissions are missing on a component of the path. Foorumipostaus. Luettavissa: https://stackoverflow.com/questions/25190043/apache-permissions-are-missing-on-a-component-of-the-path/. Luettu 2.3.2025.
+
+NameCheap, 2025. How do I set up host records for a domain? Luettavissa: https://www.namecheap.com/support/knowledgebase/article.aspx/434/2237/how-do-i-set-up-host-records-for-a-domain/. Luettu 2.3.2025.
