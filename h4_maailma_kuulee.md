@@ -1,4 +1,5 @@
 # h4 Maailma kuulee
+
 Tehtävänantona oli tehdä kaksi tiivistelmää sekä vuokrata oma virtuaalipalvelin. Palvelimelle on tarkoitus tehdä sille vaadittavat alkutoimet ja lopuksi asentaa sille vielä oma webbipalvelin.
 
 Harjoituksessa käytetty kone:
@@ -17,7 +18,7 @@ Virtuaalikoneena Oracle VirtualBoxiin asennettu Debian.
 
 ![image](https://github.com/user-attachments/assets/0392d1e6-da5e-4c0c-b198-5b9ffe2ec975)
 
-Tiivistelmä Susanna Lehdon blogipostauksesta Teoriasta käytäntöön pilvipalvelimen avulla
+## Tiivistelmä Susanna Lehdon blogipostauksesta Teoriasta käytäntöön pilvipalvelimen avulla
 
 Pilvipalvelimen vuokraus ja asennus:
 
@@ -54,9 +55,9 @@ Palvelimen ohjelmien päivitys:
 
 -	Päivitykset asennetaan juuri luodun käyttäjän avulla komennoilla sudo apt-get update, sudo apt-get upgrade sekä sudo apt-get dist-upgrade.
   
-(Lehto S., 2022)
+(Lehto)
 
-Tiivistelmä Tero Karvisen artikkelista First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS
+## Tiivistelmä Tero Karvisen artikkelista First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS
 
 Serverin vuokraaminen
 
@@ -91,9 +92,9 @@ Muutetaan kohta PermitLogin yes –> no.
 
 -	Muistetaan tehdä reikä Apachea varten komennolla sudo ufw allow 80/tcp.
   
-(Karvinen T., 2017)
+(Karvinen)
 
-a)	Oman virtuaalipalvelimen vuokraus
+## a)	Oman virtuaalipalvelimen vuokraus
 
 19:30. Apuna käytin oppitunnin luentoa sekä Karvisen Linux-palvelinten kurssisivustoa. Yritin ensin käyttää GitHub Educationin krediittejä Digital Oceanin palvelimen vuokraukseen, mutta jostain syystä sivusto ei saanut maksukorttiani vahvistettua, ja päätin siirtyä kokeilemaan UpCloudia. Tämä palveluntarjoaja hyväksyi tietoni, ja pääsin vahvistamaan tilini.
 
@@ -103,7 +104,6 @@ Maksoin vielä 10 euroa päästäkseni kaikkiin ominaisuuksiin käsiksi.
 
 ![image](https://github.com/user-attachments/assets/53748ddf-c1cc-4604-9015-d5d486fade9e)
 
- 
 19:40. Ensimmäisen serverin asennus. Aloitetaan painamalla Servers-välilehdeltä Deploy server -nappia.
 
 ![image](https://github.com/user-attachments/assets/1216a0d7-e236-45e9-9816-d81c871b8a20)
@@ -168,7 +168,7 @@ Luotu serveri näyttää toimivan, ja tiedoista saamme yhteyden muodostukseen ta
 
 (CyberSecc Brit, 2022; Karvinen T., 2025)
 
-b)	Alkutoimet omalla virtuaalipalvelimella
+## b)	Alkutoimet omalla virtuaalipalvelimella
 
 20:10. Karvisen artikkelin First Steps on a New Virtual Private Server – an Example on DigitalOcean and Ubuntu 16.04 LTS mukaisesti aloitetaan ottamalla yhteyttä serveriin komennolla ssh root@94.237.119.77. Varmistetaan yhdistäminen kirjoittamalla yes ja enter. Yhdistäminen onnistuu.
 
@@ -206,7 +206,7 @@ Lopuksi päivitin viimeisimmät ohjelmien tietoturvapäivitykset komennolla sudo
 
 (Karvinen T., 2017)
 
-c)	Webbipalvelimen asennus ja testisivun korvaaminen
+## c)	Webbipalvelimen asennus ja testisivun korvaaminen
 
 20:40. Käytin muistin apuna Karvisen ohjeita Apachen käytöstä. Asennetaan ensin palvelimelle Apache2 komennolla sudo apt-get install apache2.
 
