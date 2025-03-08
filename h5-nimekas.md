@@ -457,7 +457,7 @@ NameCheap, 2025. How do I set up host records for a domain? Luettavissa: https:/
 
 DIG GuI, 2025. Dig Command Manual. Luettavissa: https://www.diggui.com/dig-command-manual.php. Luettu 8.3.2025.
 
-Oli, 2011. Foorumipostaus. Luettavissa: https://askubuntu.com/questions/25098/how-do-i-install-dig. Luettu 8.3.2025.
+Oli, 2011. How do I install dig? Foorumipostaus. Luettavissa: https://askubuntu.com/questions/25098/how-do-i-install-dig. Luettu 8.3.2025.
 
 Gite, 2024. Linux and Unix dig Command Examples. Luettavissa: https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/. Luettu 8.3.2025.
 
