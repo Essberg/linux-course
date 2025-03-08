@@ -165,7 +165,7 @@ Tämänkään avulla en päässyt serveriin käsiksi.
 (Karvinen, UpCloud)
 
 
-## Raportin loppuosa on tehty 1.-2.3.2025.
+## Raportin loppuosa on tehty 1.-2.3. sekä 8.3.2025.
 
 1.3. 20:15. Viikon luennolla käytiin kotitehtävää läpi, ja sain sieltä paljon vinkkejä tähän tehtävään. Päätin ottaa kokonaan uuden serverin käyttöön, sillä pelkäsin tekemieni SSH-avainten muutoksien vaikeuttavan tehtäviä. Lisäksi ajattelin, ettei serverin vuokraamisen ja alkuasetuksien teon kertaus tekisi pahaa. Kävin siis vuokraamassa uuden serverin UpCloudilta ja valmistelin sen asetuksineen käyttöä varten. Seurasin tässä omaa edellistä raporttiani muistin virkistämiseksi.
 
@@ -356,11 +356,82 @@ Molemmat alisivut ohjasivat oikein etusivulle!
 
 ## e) DNS-tietojen tutkiminen
 
-Tässä kohdassa on tarkoitus käyttää dig- ja host-komentoja DNS-tietojen vertailuun.
+8.3.2025 20:10-21:00. Tässä kohdassa on tarkoitus käyttää dig- ja host-komentoja DNS-tietojen vertailuun.
+
+Avasin virtuaalikoneeni terminaalin, ja kokeilin komentoa
+
+```
+$dig essikarlberg.com
+```
+
+![image](https://github.com/user-attachments/assets/fc011189-8513-4aac-809e-a933c22d4052)
+
+Se ei kuitenkaan toiminut, eli minulla ei ollut asennettuna ohjelmaa, jolla komennon voisi suorittaa. AskUbuntusta löysin postauksen, jossa neuvottiin asentamaan dnsutils-ohjelma komennolla
+
+```
+$sudo apt-get install dnsutils
+```
+
+![image](https://github.com/user-attachments/assets/2cfce5bf-7f8b-49f1-8b8d-877dcf8ad53a)
+
+Asennuksen jälkeen ajoin dig-komennon uudestaan:
+
+![image](https://github.com/user-attachments/assets/53fa7105-85d5-4c3c-8573-205b0321eac5)
+
+Tehtävässä kerrottiin, ettei dig-komento näytä automaattisesti kaikkia tietueita. Luin Dig Command Manualia, jossa kerrottiin, että komento hakee automaationa vain A-tietueita. Mikäli haluaa saada kaikki tulokset näkyviin, tulee komento antaa muodossa
+
+```
+@dig essikarlberg.com any
+```
+
+![image](https://github.com/user-attachments/assets/d21c8f80-c819-4314-b4b5-b6a1ead8cf6c)
+
+Komennolla sain enemmän tietueita näkyviin. Katsoin apua tietojen tulkintaan artikkelista Linux and Unix dig Command Examples.
+
+Answer sectionin kentät kertovat domainin nimen, TTL-arvon, luokan (IN eli internet), haetun tietueen tyypin (A) sekä viimeisenä IP-osoitteen. NS-tietue kertoo domainin serverin nimen. Lisäksi löytyy hakuun käytetty aika (Query time), koska haku tehtiin ja kuinka suuri vastaus oli (msg size).
+
+Tein haun myös osoitteelle google.com
+
+```
+$dig google.com any
+```
+
+sekä pienemmän yrityksen sivuille arcandia.fi
+
+```
+$dig arcandia.fi any
+```
+
+![image](https://github.com/user-attachments/assets/3d1bb92a-32a1-4e4b-b988-1ccf2e132924)
+
+![image](https://github.com/user-attachments/assets/676fbe5f-5fd9-4b7a-a297-63dd1d6f557d)
+
+Google.com antoi enemmän tietueita, ja vastasi pyyntöön nopeammin kuin oma sivustoni. MX-tietue kertoo email-serverien nimet ja AAAA IPv6-osoitteen. Huomasin, että sivuston IPv4-osoitteen TTL on huomattavasti pienempi kuin omani.
+
+Arcandian sivustolla oli kolme eri IPv4-osoitetta, ja sähköpostiservereitäkin oli 5 kappaletta. Sivun vastausaika oli pienempi kuin omani, mutta suurempi kuin googlella, ja palautetun viestin koko oli hauista suurin.
+
+Seuraavaksi kokeilin host komentoa kaikkiin kolmeen sivuun:
+
+```
+$host essikarlberg.com
+$host google.com
+$host arcandia.fi
+```
+
+![image](https://github.com/user-attachments/assets/31804f28-8a27-4fb4-81df-95a18982d189)
+
+![image](https://github.com/user-attachments/assets/4dcd8b4c-0607-4b6b-bf2d-ff3cb3837509)
+
+![image](https://github.com/user-attachments/assets/8b01d169-0e34-45d7-bad7-fe0b3543f2b9)
+
+ 
+Komento tuo näkyviin domainin IPv4-osoitteita, IPv6-osoitteita sekä sähköpostiserverit. Komennolla voi hakea myös IP-osoitteen avulla domainin nimen.
+
+(Karvinen, Oli, DiG GUI, Gite)
 
 ## Lähteet:
 
-Tehtävänanto: Karvinen T., 2025. Linux-palvelimet, h5 Nimekäs. Luettavissa: https://terokarvinen.com/linux-palvelimet/. Luettu: 24.2.2025.
+Tehtävänanto: Karvinen T., 2025. Linux-palvelimet, h5 Nimekäs. Luettavissa: https://terokarvinen.com/linux-palvelimet/. Luettu 24.2.2025.
 
 Karvinen T., 2025. Linux-palvelimet, h4 Maailma kuulee. Luettavissa: https://terokarvinen.com/linux-palvelimet/. Luettu 24.2.2025.
 
@@ -378,8 +449,17 @@ Apache Software Foundation, 2025. Name-based Virtual Host Support. Luettavissa: 
 
 Essberg, 2025. H5 Nimekäs. Luettavissa: https://github.com/Essberg/linux-course/blob/main/h5-nimekas.md. Luettu 1.3.2025.
 
-GeeksforGeeks, 2024. HTML <a> href Attribute. Luettavissa: https://www.geeksforgeeks.org/html-a-href-attribute/. Luettu: 2.3.2025.
+GeeksforGeeks, 2024. HTML <a> href Attribute. Luettavissa: https://www.geeksforgeeks.org/html-a-href-attribute/. Luettu 2.3.2025.
 
 GiorgosK, 2018. Apache - Permissions are missing on a component of the path. Foorumipostaus. Luettavissa: https://stackoverflow.com/questions/25190043/apache-permissions-are-missing-on-a-component-of-the-path/. Luettu 2.3.2025.
 
 NameCheap, 2025. How do I set up host records for a domain? Luettavissa: https://www.namecheap.com/support/knowledgebase/article.aspx/434/2237/how-do-i-set-up-host-records-for-a-domain/. Luettu 2.3.2025.
+
+DIG GuI, 2025. Dig Command Manual. Luettavissa: https://www.diggui.com/dig-command-manual.php. Luettu 8.3.2025.
+
+Oli, 2011. Foorumipostaus. Luettavissa: https://askubuntu.com/questions/25098/how-do-i-install-dig. Luettu 8.3.2025.
+
+Gite, 2024. Linux and Unix dig Command Examples. Luettavissa: https://www.cyberciti.biz/faq/linux-unix-dig-command-examples-usage-syntax/. Luettu 8.3.2025.
+
+Gite, 2024. Linux and Unix host Command Examples. Luettavissa: https://www.cyberciti.biz/faq/linux-unix-host-command-examples-usage-syntax/. Luettu 8.3.2025.
+
